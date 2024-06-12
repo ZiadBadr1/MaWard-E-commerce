@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Admin;
+use App\Models\Designer;
+use App\Models\User;
+use App\Observer\PasswordObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        User::observe(PasswordObserver::class);
+        Admin::observe(PasswordObserver::class);
+        Designer::observe(PasswordObserver::class);
     }
 }
