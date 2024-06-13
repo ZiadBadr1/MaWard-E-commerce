@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'user',
         'passwords' => 'users',
     ],
 
@@ -36,18 +36,21 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        'designer' => [
-            'driver' => 'session',
-            'provider' => 'designers',
+
+        'user' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
         ],
+
+        'designer' => [
+            'driver' => 'jwt',
+            'provider' => 'designers',
+        ]
     ],
 
     /*
@@ -109,6 +112,18 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'designers' => [
+            'provider' => 'designers',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
