@@ -23,8 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        User::observe(PasswordObserver::class);
-        Admin::observe(PasswordObserver::class);
-        Designer::observe(PasswordObserver::class);
+
     }
 }
