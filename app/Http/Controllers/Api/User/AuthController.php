@@ -6,6 +6,7 @@ use App\Helper\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\RegisterRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Validator;
@@ -33,7 +34,7 @@ class AuthController extends Controller
         $attribute = $request->validated();
 
         if (!$token = auth()->attempt($attribute)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return ApiResponse::sendResponse('401','Unauthorized',[]);
         }
 
         return $this->createNewToken($token);
@@ -49,7 +50,8 @@ class AuthController extends Controller
         $attribute = $request->validated();
 
         $user = User::create($attribute);
-        return ApiResponse::sendResponse('200','user created successfully',$user);
+
+        return ApiResponse::sendResponse('200','user created successfully',new UserResource($user));
     }
 
 
@@ -61,8 +63,7 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->guard('user')->logout();
-
-        return response()->json(['message' => 'User successfully signed out']);
+        return ApiResponse::sendResponse('200','User successfully signed out',[]);
     }
 
     /**
@@ -82,7 +83,7 @@ class AuthController extends Controller
      */
     public function userProfile()
     {
-        return response()->json(auth()->guard('user')->user());
+        return ApiResponse::sendResponse('200','This is user Profile',new UserResource(auth()->guard('user')->user()));
     }
 
     /**
@@ -98,7 +99,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->guard('user')->user()
+            'user' => new UserResource(auth()->guard('user')->user())
         ]);
     }
 }
