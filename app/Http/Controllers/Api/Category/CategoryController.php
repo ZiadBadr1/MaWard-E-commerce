@@ -16,4 +16,13 @@ class CategoryController extends Controller
 
         return ApiResponse::sendResponse(200,'This is all Categories', CategoryResource::collection($categories));
     }
+
+    public function show($id)
+    {
+        $category = Category::find($id);
+        if(isset($category))
+            return ApiResponse::sendResponse(200,'This is Category', new CategoryResource($category));
+        else
+            return ApiResponse::sendResponse(404,'This Category Not Found',[]);
+    }
 }
