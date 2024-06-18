@@ -12,5 +12,9 @@ class Admin extends Authenticatable
     protected $fillable = ['name', 'email', 'password', 'avatar'];
 
 
+    public function avatar():string
+    {
+        return $this->avatar ? asset('storage/'.$this->avatar) : asset('assets/dashboard/images/avatars/uifaces1.jpg');
+    }
 
 }
