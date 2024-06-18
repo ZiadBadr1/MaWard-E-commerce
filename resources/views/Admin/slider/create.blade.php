@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('Admin.layouts.master')
 @section('open-slider-management','has-open')
 @section('active-slider','has-active')
 @section('content')

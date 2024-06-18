@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('Admin.layouts.master')
 @section('open-category-management','has-open')
 @section('active-category','has-active')
 
