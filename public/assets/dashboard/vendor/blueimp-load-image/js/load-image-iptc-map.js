@@ -41,7 +41,7 @@
     0x08: 'EditorialUpdate',
     0x0a: 'Urgency',
     0x0c: 'SubjectRef',
-    0x0f: 'Category',
+    0x0f: 'category',
     0x14: 'SupplCategory',
     0x16: 'FixtureID',
     0x19: 'Keywords',

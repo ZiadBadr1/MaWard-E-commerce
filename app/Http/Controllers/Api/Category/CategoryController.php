@@ -21,8 +21,8 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         if(isset($category))
-            return ApiResponse::sendResponse(200,'This is Category', new CategoryResource($category));
+            return ApiResponse::sendResponse(200,'This is category', new CategoryResource($category));
         else
-            return ApiResponse::sendResponse(404,'This Category Not Found',[]);
+            return ApiResponse::sendResponse(404,'This category Not Found',[]);
     }
 }
