@@ -1,4 +1,4 @@
-@extends('Admin.layouts.master')
+@extends('admin.layouts.master')
 @section('open-category-management','has-open')
 @section('active-category','has-active')
 
@@ -17,7 +17,8 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item active">
-                                    <a href="{{route('admin.category.index')}}"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>
+                                    <a href="{{route('admin.category.index')}}"><i
+                                                class="breadcrumb-icon fa fa-angle-left mr-2"></i>
                                         Category Management
                                     </a>
                                 </li>
@@ -30,7 +31,8 @@
                         <!-- /title and toolbar -->
                     </header><!-- /.page-title-bar -->
 
-                    <form method="POST" action="{{route('admin.category.update',$category)}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('admin.category.update',$category)}}"
+                          enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -59,8 +61,8 @@
                                         <label class="custom-file-label" for="avatar">Choose file</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6 form-avatar-container col-sm-12 justify-content-sm-center align-items-sm-center" >
-                                    <img src="{{$category->icon()}}" alt="icon" >
+                                <div class="col-md-6 form-avatar-container col-sm-12 justify-content-sm-center align-items-sm-center">
+                                    <img src="{{$category->icon()}}" alt="icon">
                                 </div>
                             </div>
                             @error('icon')
@@ -70,7 +72,6 @@
                         </div>
 
 
-
                         <div class="d-flex justify-content-start form-button">
                             <button type="submit" class="btn btn-success mt-4">Update</button>
                         </div>
@@ -78,7 +79,6 @@
 
                 </div>
             </div>
-
 
 @endsection
 

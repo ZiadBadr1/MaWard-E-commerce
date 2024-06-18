@@ -1,4 +1,4 @@
-@extends('Admin.layouts.master')
+@extends('admin.layouts.master')
 @section('open-category-management','has-open')
 @section('active-category','has-active')
 
@@ -17,7 +17,8 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item active">
-                                    <a href="{{route('admin.dashboard')}}"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Dashboard</a>
+                                    <a href="{{route('admin.dashboard')}}"><i
+                                                class="breadcrumb-icon fa fa-angle-left mr-2"></i>Dashboard</a>
                                 </li>
                             </ol>
                         </nav><!-- /.breadcrumb -->
@@ -72,7 +73,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><span
-                                                        class="oi oi-magnifying-glass"></span></span>
+                                                            class="oi oi-magnifying-glass"></span></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Search record">
                                         </div><!-- /.input-group -->
@@ -103,7 +104,7 @@
                                                 </td>
                                                 <td class="align-middle">
                                                     <span
-                                                        class="badge {{$category->updated_at->diffInMinutes() < 60 ? "badge-warning" : "badge-info" }}">
+                                                            class="badge {{$category->updated_at->diffInMinutes() < 60 ? "badge-warning" : "badge-info" }}">
                                                     {{$category->updated_at->diffForHumans()}}
                                                     </span>
 
@@ -113,7 +114,7 @@
                                                         <a href="{{route('admin.category.edit',$category)}}"
                                                            class="btn btn-sm btn-icon btn-secondary">
                                                             <i class="fa fa-pencil-alt"></i> <span
-                                                                class="sr-only">Edit</span>
+                                                                    class="sr-only">Edit</span>
                                                         </a>
                                                     </div>
                                                     <div style="display: inline-block;">

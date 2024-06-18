@@ -91,7 +91,7 @@ snippet model\n\
 			return ('${7:view_or_url_name}' ${8})\n\
 \n\
 snippet modeladmin\n\
-	class ${1:ModelName}Admin(admins.ModelAdmin):\n\
+	class ${1:ModelName}admin(admins.ModelAdmin):\n\
 		${2}\n\
 	\n\
 	admins.site.register($1, $1Admin)\n\

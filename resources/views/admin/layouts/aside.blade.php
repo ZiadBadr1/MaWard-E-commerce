@@ -68,7 +68,7 @@
 {{--                        </ul><!-- /child menu -->--}}
 {{--                    </li>--}}
 {{--                    @admin--}}
-{{--                     Admin Management --}}
+{{--                     admin Management --}}
 {{--                    <li class="menu-item has-child @yield('open-support-management')">--}}
 {{--                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span--}}
 {{--                                class="menu-text">Dashboard Settings</span> </a> <!-- child menu -->--}}

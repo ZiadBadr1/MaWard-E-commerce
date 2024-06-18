@@ -1,0 +1,5 @@
+@include('admin.layouts.head')
+@include('admin.authentication.component.auth_header')
+@yield('content')
+@include('admin.authentication.component.footer')
+@extends('admin.authentication.component.js')

@@ -1,4 +1,4 @@
-@extends('Admin.authentication.component.main')
+@extends('admin.authentication.component.main')
 
 
 @section('content')
@@ -11,7 +11,8 @@
         <!-- .form-group -->
         <div class="form-group">
             <div class="form-label-group">
-                <input type="email" id="inputUser" name="email" class="form-control" placeholder="Username" autofocus="" value="{{old('email')}}"> <label for="inputUser">email</label>
+                <input type="email" id="inputUser" name="email" class="form-control" placeholder="Username" autofocus=""
+                       value="{{old('email')}}"> <label for="inputUser">email</label>
             </div>
             @error('email')
             <p class="text-danger">{{ $message }}</p>
@@ -20,7 +21,8 @@
         <!-- .form-group -->
         <div class="form-group">
             <div class="form-label-group">
-                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password"> <label for="inputPassword">Password</label>
+                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password">
+                <label for="inputPassword">Password</label>
             </div>
             @error('password')
             <p class="text-danger">{{ $message }}</p>
@@ -33,7 +35,8 @@
         <!-- .form-group -->
         <div class="form-group text-center">
             <div class="custom-control custom-control-inline custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="remember-me"> <label class="custom-control-label" for="remember-me">Keep me sign in</label>
+                <input type="checkbox" class="custom-control-input" id="remember-me"> <label
+                        class="custom-control-label" for="remember-me">Keep me sign in</label>
             </div>
         </div><!-- /.form-group -->
     </form><!-- /.auth-form -->
