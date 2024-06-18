@@ -44,6 +44,16 @@
                             </li>
                         </ul>
                     </li><!-- /.menu-item -->
+
+                    <li class="menu-item has-child @yield('open-category-management')">
+                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span
+                                    class="menu-text">Category Management</span> </a> <!-- child menu -->
+                        <ul class="menu">
+                            <li class="menu-item @yield('active-category')">
+                                <a href="{{route('admin.category.index')}}" class="menu-link">Category</a>
+                            </li>
+                        </ul>
+                    </li>
 {{--                     Support Management --}}
 {{--                    <li class="menu-item has-child @yield('open-support-management')">--}}
 {{--                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span--}}

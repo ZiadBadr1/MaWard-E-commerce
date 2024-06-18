@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Auth\SessionController;
+use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Slider\SliderController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,4 +47,12 @@ Route::group([
     'middleware' => ['auth:admin']
 ],function (){
     Route::resource('slider',SliderController::class);
+});
+
+Route::group([
+    'as' => 'admin.',
+    'prefix' => 'admin/',
+    'middleware' => ['auth:admin']
+],function (){
+    Route::resource('category',CategoryController::class);
 });

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\Api\Slider\SliderController;
 use App\Http\Controllers\Api\User\AuthController;
 use Illuminate\Http\Request;
@@ -35,6 +36,12 @@ Route::group([
     'prefix' => 'sliders'
 ], function () {
     Route::get('/', [SliderController::class, 'index']);
+});
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'categories'
+], function () {
+    Route::get('/', [CategoryController::class, 'index']);
 });
 
 
