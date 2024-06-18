@@ -11,7 +11,7 @@ class SessionController extends Controller
 {
     public function login()
     {
-        return view('Admin.authentication.login');
+        return view('admin.authentication.login');
     }
     public function checkLogin(LoginRequest $request)
     {
