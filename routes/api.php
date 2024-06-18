@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Slider\SliderController;
 use App\Http\Controllers\Api\User\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,13 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 });
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'sliders'
+], function () {
+    Route::get('/', [SliderController::class, 'index']);
+});
+
+

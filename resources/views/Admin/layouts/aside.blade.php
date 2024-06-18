@@ -31,61 +31,20 @@
                 <ul class="menu">
                     <!-- .menu-item -->
                     <li class="menu-item @yield('active-dashboard')">
-                        <a href="" class="menu-link"><span class="menu-icon fas fa-home"></span> <span
+                        <a href="{{route('admin.dashboard')}}" class="menu-link"><span class="menu-icon fas fa-home"></span> <span
                                 class="menu-text">Dashboard</span></a>
                     </li><!-- /.menu-item -->
-{{--                    --}}{{-- User Authentication --}}
-{{--                    <li class="menu-item has-child @yield('open-user-management')">--}}
-{{--                        <a href="#" class="menu-link"><span class="menu-icon oi oi-person"></span> <span--}}
-{{--                                class="menu-text">User Management</span></a> <!-- child menu -->--}}
-{{--                        <ul class="menu">--}}
-{{--                            @if(auth()->guard('admin')->user())--}}
 
-{{--                                <li class="menu-item @yield('active-user-management')">--}}
-{{--                                    <a href="{{route('admins.management.admins.index')}}" class="menu-link">Mangers--}}
-{{--                                        Management</a>--}}
-{{--                                </li>--}}
-{{--                            @else--}}
-{{--                                <li class="menu-item">--}}
-{{--                                    <a href="user-profile.html" class="menu-link">Login</a>--}}
-{{--                                </li>--}}
-{{--                            @endif--}}
-
-
-{{--                        </ul><!-- /child menu -->--}}
-{{--                    </li><!-- /.menu-item -->--}}
-{{--                    --}}{{-- Creator Management --}}
-{{--                    <li class="menu-item has-child @yield('open-creator-management')">--}}
-{{--                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span--}}
-{{--                                class="menu-text">Creator Management</span> </a> <!-- child menu -->--}}
-{{--                        <ul class="menu">--}}
-{{--                            <li class="menu-item @yield('active-category')">--}}
-{{--                                <a href="{{route('admins.category.index')}}" class="menu-link">Category Management</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="menu-item @yield('active-blog')">--}}
-{{--                                <a href="{{route('admins.blog.index')}}" class="menu-link">Blog Management</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="menu-item @yield('active-projects')">--}}
-{{--                                <a href="{{route('admins.project.index')}}" class="menu-link">Portfolio</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="menu-item @yield('active-page')">--}}
-{{--                                <a href="{{route('admins.page.index')}}" class="menu-link">Page Management</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="menu-item @yield('active-service')">--}}
-{{--                                <a href="{{route('admins.service.index')}}" class="menu-link">Service Management</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="menu-item @yield('active-client')">--}}
-{{--                                <a href="{{route('admins.client.index')}}" class="menu-link">Client Management</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="menu-item @yield('active-slider')">--}}
-{{--                                <a href="{{route('admins.slider.index')}}" class="menu-link">Slider Management</a>--}}
-{{--                            </li>--}}
-{{--                            <li class="menu-item @yield('active-contact')">--}}
-{{--                                <a href="{{route('admins.contact.index')}}" class="menu-link">Contact Management</a>--}}
-{{--                            </li>--}}
-{{--                        </ul><!-- /child menu -->--}}
-{{--                    </li><!-- /.menu-item -->--}}
-{{--                    --}}{{-- Support Management --}}
+                    <li class="menu-item has-child @yield('open-slider-management')">
+                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span
+                                class="menu-text">Slider Management</span> </a> <!-- child menu -->
+                        <ul class="menu">
+                            <li class="menu-item @yield('active-slider')">
+                                <a href="{{route('admin.slider.index')}}" class="menu-link">Slider</a>
+                            </li>
+                        </ul>
+                    </li><!-- /.menu-item -->
+{{--                     Support Management --}}
 {{--                    <li class="menu-item has-child @yield('open-support-management')">--}}
 {{--                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span--}}
 {{--                                class="menu-text">Support Management</span> </a> <!-- child menu -->--}}
@@ -99,7 +58,7 @@
 {{--                        </ul><!-- /child menu -->--}}
 {{--                    </li>--}}
 {{--                    @admin--}}
-{{--                    --}}{{-- Admin Management --}}
+{{--                     Admin Management --}}
 {{--                    <li class="menu-item has-child @yield('open-support-management')">--}}
 {{--                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span--}}
 {{--                                class="menu-text">Dashboard Settings</span> </a> <!-- child menu -->--}}
@@ -112,13 +71,6 @@
 {{--                    </li>--}}
 {{--                    @endadmin--}}
 {{--                    <!-- /.menu-item -->--}}
-
-
-
-
-
-
-
 
 
                 </ul><!-- /.menu -->

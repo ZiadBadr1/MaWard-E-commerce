@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Auth\SessionController;
+use App\Http\Controllers\Admin\Slider\SliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +39,11 @@ Route::group([
     Route::post('logout',[SessionController::class,'logout'])->name('logout');
 });
 
+
+Route::group([
+    'as' => 'admin.',
+    'prefix' => 'admin/',
+    'middleware' => ['auth:admin']
+],function (){
+    Route::resource('slider',SliderController::class);
+});
