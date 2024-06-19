@@ -64,6 +64,16 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="menu-item has-child @yield('open-occasion-management')">
+                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span
+                                    class="menu-text">Occasion Management</span> </a> <!-- child menu -->
+                        <ul class="menu">
+                            <li class="menu-item @yield('active-occasion')">
+                                <a href="{{route('admin.occasion.index')}}" class="menu-link">Occasion</a>
+                            </li>
+                        </ul>
+                    </li>
 {{--                     Support Management --}}
 {{--                    <li class="menu-item has-child @yield('open-support-management')">--}}
 {{--                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span--}}
