@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Brand\BrandController;
 use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\Api\Slider\SliderController;
 use App\Http\Controllers\Api\User\AuthController;
@@ -45,4 +46,11 @@ Route::group([
     Route::get('/{id}', [CategoryController::class, 'show']);
 });
 
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'brands'
+], function () {
+    Route::get('/', [BrandController::class, 'index']);
+    Route::get('/{id}', [BrandController::class, 'show']);
+});
 

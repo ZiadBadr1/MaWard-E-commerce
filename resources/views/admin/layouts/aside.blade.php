@@ -54,6 +54,16 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="menu-item has-child @yield('open-brand-management')">
+                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span
+                                    class="menu-text">Brand Management</span> </a> <!-- child menu -->
+                        <ul class="menu">
+                            <li class="menu-item @yield('active-brand')">
+                                <a href="{{route('admin.brand.index')}}" class="menu-link">Brand</a>
+                            </li>
+                        </ul>
+                    </li>
 {{--                     Support Management --}}
 {{--                    <li class="menu-item has-child @yield('open-support-management')">--}}
 {{--                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span--}}
