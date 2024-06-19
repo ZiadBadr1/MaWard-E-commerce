@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Brand\BrandController;
 use App\Http\Controllers\Api\Category\CategoryController;
+use App\Http\Controllers\Api\Occasion\OccasionController;
 use App\Http\Controllers\Api\Slider\SliderController;
 use App\Http\Controllers\Api\User\AuthController;
 use Illuminate\Http\Request;
@@ -52,5 +53,13 @@ Route::group([
 ], function () {
     Route::get('/', [BrandController::class, 'index']);
     Route::get('/{id}', [BrandController::class, 'show']);
+});
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'occasions'
+], function () {
+    Route::get('/', [OccasionController::class, 'index']);
+    Route::get('/{id}', [OccasionController::class, 'show']);
 });
 
