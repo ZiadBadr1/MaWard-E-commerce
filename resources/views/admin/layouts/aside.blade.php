@@ -74,6 +74,15 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="menu-item has-child @yield('open-product-management')">
+                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span
+                                    class="menu-text">Product Management</span> </a> <!-- child menu -->
+                        <ul class="menu">
+                            <li class="menu-item @yield('active-product')">
+                                <a href="{{route('admin.product.index')}}" class="menu-link">Product</a>
+                            </li>
+                        </ul>
+                    </li>
 {{--                     Support Management --}}
 {{--                    <li class="menu-item has-child @yield('open-support-management')">--}}
 {{--                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span--}}
