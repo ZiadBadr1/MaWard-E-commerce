@@ -69,7 +69,8 @@ Route::group([
     'prefix' => 'products'
 ], function () {
     Route::get('/', [ProductController::class, 'index']);
-    Route::get('/{id}', [ProductController::class, 'show']);
+    Route::get('/{id}', [ProductController::class, 'show'])->where('id', '[0-9]+');;
     Route::get('/search/{query}', [ProductController::class, 'search']);
+    Route::get('/filter/', [ProductController::class, 'filter']);
 });
 
