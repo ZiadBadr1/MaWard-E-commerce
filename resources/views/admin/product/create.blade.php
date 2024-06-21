@@ -44,14 +44,13 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="form-label-group">
-                                <textarea id="description" name="description" class="form-control" placeholder="Description">{{ old('description') }}</textarea>
-                                <label for="description">Description</label>
-                            </div>
+                            <label for="description" class="form-label">Description</label>
+                            <textarea id="description" name="description" class="form-control" placeholder="Description" rows="5">{{ old('description') }}</textarea>
                             @error('description')
-                            <p class="text-danger">{{ $message }}</p>
+                            <div class="text-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>
+
 
                         <div class="form-group">
                             <div class="form-label-group">

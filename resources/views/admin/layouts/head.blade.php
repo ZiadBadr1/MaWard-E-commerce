@@ -28,6 +28,8 @@
         "headline": "Dashboard",
         "@context": "http://schema.org"
       }
+
+
     </script><!-- End SEO tag -->
     <!-- FAVICONS -->
     <link rel="apple-touch-icon" sizes="144x144" href="assets/apple-touch-icon.png">
@@ -53,7 +55,5 @@
         // add flag class to html immediately
         if (isCompact == true) document.querySelector('html').classList.add('preparing-compact-menu');
     </script><!-- END THEME STYLES -->
-{{--    TinyMCE--}}
-    <script src="https://cdn.tiny.cloud/1/jx095o3nrw6win2v6lc4ncilm42dm6egzxtohta325litd0w/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
 </head>
