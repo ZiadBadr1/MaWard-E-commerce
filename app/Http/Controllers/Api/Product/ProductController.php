@@ -26,4 +26,12 @@ class ProductController extends Controller
         else
             return ApiResponse::sendResponse(404,'This Product Not Found',[]);
     }
+
+    public function search(string $query)
+    {
+        $products = Product::with(['category', 'brand', 'occasion', 'images'])
+            ->where('name', 'like', '%' . $query . '%')
+            ->paginate(10);
+        return ApiResponse::sendResponse(200,'This is all Products', new ProductResourceCollection($products));
+    }
 }

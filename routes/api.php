@@ -70,5 +70,6 @@ Route::group([
 ], function () {
     Route::get('/', [ProductController::class, 'index']);
     Route::get('/{id}', [ProductController::class, 'show']);
+    Route::get('/search/{query}', [ProductController::class, 'search']);
 });
 
