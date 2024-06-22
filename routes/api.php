@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Brand\BrandController;
 use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\Api\Occasion\OccasionController;
+use App\Http\Controllers\Api\Product\FavoriteProductController;
 use App\Http\Controllers\Api\Product\ProductController;
 use App\Http\Controllers\Api\Slider\SliderController;
 use App\Http\Controllers\Api\User\AuthController;
@@ -73,4 +74,14 @@ Route::group([
     Route::get('/search/{query}', [ProductController::class, 'search']);
     Route::get('/filter/', [ProductController::class, 'filter']);
 });
+
+Route::group([
+    'middleware' => ['api','auth:user'],
+    'prefix' => 'favorite'
+], function () {
+    Route::get('/', [FavoriteProductController::class, 'index']);
+    Route::get('/{product}', [FavoriteProductController::class, 'store']);
+});
+
+
 

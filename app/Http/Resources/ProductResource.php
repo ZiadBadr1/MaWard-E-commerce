@@ -22,7 +22,7 @@ class ProductResource extends JsonResource
             'quantity' => $this->quantity,
             'color' => $this->color,
             'special_text' => $this->special_text,
-            'special_text_pric  e' => $this->special_text_price,
+            'special_text_price' => $this->special_text_price,
             'special_image' => $this->special_image,
             'special_image_price' => $this->special_image_price,
             'category' => new CategoryResource($this->whenLoaded('category')),

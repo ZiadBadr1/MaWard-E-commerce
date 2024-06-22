@@ -5,6 +5,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
@@ -35,5 +36,10 @@ class Product extends Model
     public function excerpt(): string
     {
         return Str::limit(strip_tags(html_entity_decode($this->description)),100);
+    }
+
+    public function favoritedByUsers():BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, 'user_favs', 'product_id', 'user_id');
     }
 }
