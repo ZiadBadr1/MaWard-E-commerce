@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\Brand\BrandController;
+use App\Http\Controllers\Api\Cart\CartController;
+use App\Http\Controllers\Api\CartItem\CartItemController;
 use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\Api\Occasion\OccasionController;
 use App\Http\Controllers\Api\Product\FavoriteProductController;
@@ -82,6 +84,18 @@ Route::group([
     Route::get('/', [FavoriteProductController::class, 'index']);
     Route::get('/{product}', [FavoriteProductController::class, 'store']);
 });
+
+Route::group([
+    'middleware' => ['api','auth:user'],
+    'prefix' => 'cart'
+], function () {
+    Route::get('',[CartController::class, 'show']);
+    Route::post('/items', [CartItemController::class, 'store']);
+    Route::patch('/items/{id}/increment', [CartItemController::class, 'increment']);
+    Route::patch('/items/{id}/decrement', [CartItemController::class, 'decrement']);
+    Route::delete('/items/{id}', [CartItemController::class, 'destroy']);
+});
+
 
 
 

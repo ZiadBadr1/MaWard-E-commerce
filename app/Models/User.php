@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -64,6 +65,20 @@ class User extends Authenticatable implements JWTSubject
     public function favoriteProducts():BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'user_favs', 'user_id', 'product_id');
+    }
+
+    public static function boot(): void
+    {
+        parent::boot();
+
+        static::created(function ($user) {
+            $user->cart()->create();
+        });
+    }
+
+    public function cart():HasOne
+    {
+        return $this->hasOne(Cart::class);
     }
 
 }
