@@ -6,9 +6,11 @@ use App\Helper\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\RegisterRequest;
+use App\Http\Requests\User\UpdateProfileRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 
 
@@ -101,5 +103,22 @@ class AuthController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => new UserResource(auth()->guard('user')->user())
         ]);
+    }
+
+    public function updateProfile(UpdateProfileRequest $request)
+    {
+        $attributes = $request->validated();
+
+        $user = auth()->guard('user')->user();
+
+        if(isset($attributes['password']))
+        {
+            $attributes['password'] = Hash::make($attributes['password']);
+        }
+
+        $user->update($attributes);
+
+        return ApiResponse::sendResponse('200','Your profile updated successfully',new UserResource($user));
+
     }
 }
