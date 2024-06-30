@@ -22,8 +22,13 @@ class Order extends Model
         'cash_on_delivery',
         'E-Wallet'
     ];
+    const PAYMENT_STATUS = [
+        'pending',
+        'payed',
+        'unpayed'
+    ];
 
-    protected $fillable = ['user_id', 'first_name', 'last_name', 'phone', 'address', 'payment_method', 'attachment', 'total_amount', 'status'];
+    protected $fillable = ['user_id', 'first_name', 'last_name', 'phone', 'address', 'payment_method', 'attachment', 'total_amount', 'status', 'payment_status'];
 
     public function user(): BelongsTo
     {

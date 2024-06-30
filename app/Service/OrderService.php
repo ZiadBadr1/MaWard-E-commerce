@@ -4,6 +4,8 @@
 namespace App\Service;
 
 
+use App\Actions\Stock\UpdateStockQtyAction;
+use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Actions\Images\StoreImageAction;
@@ -12,8 +14,10 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use LaravelIdea\Helper\App\Models\_IH_Order_C;
 use LaravelIdea\Helper\App\Models\_IH_Order_QB;
+use Illuminate\Support\Facades\DB;
 
-class OrderService
+
+class  OrderService
 {
     protected StoreImageAction $storeImageAction;
 
@@ -24,14 +28,32 @@ class OrderService
 
     public function createOrder($data)
     {
-        $order = $this->createOrderRecord($data);
-        $this->createOrderDetails($order->id, $data['order_details']);
+        $cart = Cart::where('user_id', auth()->guard('user')->id())->with('cartItems')->firstOrFail();
+        if(count($cart->cartItems)===0)
+        {
+            return null;
+        }
+        return DB::transaction(function () use ($data) {
+            $order = $this->createOrderRecord($data);
+            $cart = Cart::where('user_id', auth()->guard('user')->id())->with('cartItems')->firstOrFail();
+            $this->createOrderDetails($order->id, $cart->cartItems->load('product'));
+            UpdateStockQtyAction::execute($order->id);
+            if ($data['payment_method'] !== 'stripe') {
+                $cart->cartItems()->delete();
+            }
 
-        return $order->load('orderDetails');
+            return $order->load('orderDetails');
+        });
     }
 
     protected function createOrderRecord($data)
     {
+        $cart = Cart::where('user_id', auth()->guard('user')->id())->with('cartItems')->firstOrFail();
+        $totalAmount = $cart->cartItems->sum(function ($item) {
+            return $item->quantity * $item->product->price;
+        });
+
+
         return Order::create([
             'user_id' => auth()->guard('user')->id(),
             'first_name' => $data['first_name'],
@@ -40,19 +62,20 @@ class OrderService
             'address' => $data['address'],
             'payment_method' => $data['payment_method'],
             'attachment' => $this->handleAttachment($data['attachment'] ?? null),
-            'total_amount' => $data['total_amount'],
+            'total_amount' => $totalAmount,
             'status' => 'pending',
+            'payment_status' => 'pending',
         ]);
     }
 
-    protected function createOrderDetails($orderId, $orderDetails): void
+    protected function createOrderDetails($orderId, Collection $cartItems): void
     {
-        foreach ($orderDetails as $detail) {
+        foreach ($cartItems as $item) {
             OrderDetail::create([
                 'order_id' => $orderId,
-                'product_id' => $detail['product_id'],
-                'quantity' => $detail['quantity'],
-                'price' => $detail['price'],
+                'product_id' => $item->product_id,
+                'quantity' => $item->quantity,
+                'price' => $item->quantity * $item->product->price,
             ]);
         }
     }
@@ -71,9 +94,8 @@ class OrderService
     public function getOrder($orderId): Model|Order|Collection|array|Builder|_IH_Order_C|_IH_Order_QB|null
     {
         $order = Order::find($orderId);
-        if($order)
-        {
-        return Order::with(['orderDetails.product','orderDetails.product.images'])->findOrFail($orderId);
+        if ($order) {
+            return Order::with(['orderDetails.product', 'orderDetails.product.images'])->findOrFail($orderId);
         }
         return null;
     }

@@ -30,12 +30,7 @@ class CreateOrderRequest extends FormRequest
             'phone' => ['required', 'string', 'max:20'],
             'address' => ['required', 'string', 'max:255'],
             'payment_method' => ['required', Rule::in(Order::PAYMENT_METHODS)],
-            'attachment' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'],
-            'total_amount' => ['required'],
-            'order_details' => ['required', 'array'],
-            'order_details.*.product_id' => ['required', 'exists:products,id'],
-            'order_details.*.quantity' => ['required', 'integer', 'min:1'],
-            'order_details.*.price' => ['required', 'numeric'],
+            'attachment' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf'],
         ];
     }
 }

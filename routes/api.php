@@ -113,3 +113,12 @@ Route::group([
     Route::post('/', [OrderController::class, 'store']);
     Route::get('/{id}', [OrderController::class, 'show']);
 });
+
+Route::group([
+    'prefix' => ''
+], function () {
+    Route::get('/success', [OrderController::class, 'success'])->name('payment.success');
+    Route::get('/cancel', [OrderController::class, 'cancel'])->name('payment.cancel');
+});
+
+
