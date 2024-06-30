@@ -5,11 +5,11 @@ use App\Http\Controllers\Api\Cart\CartController;
 use App\Http\Controllers\Api\CartItem\CartItemController;
 use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\Api\Occasion\OccasionController;
+use App\Http\Controllers\Api\Order\OrderController;
 use App\Http\Controllers\Api\Product\FavoriteProductController;
 use App\Http\Controllers\Api\Product\ProductController;
 use App\Http\Controllers\Api\Slider\SliderController;
 use App\Http\Controllers\Api\User\AuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -106,4 +106,10 @@ Route::group([
 
 
 
-
+Route::group([
+    'middleware' => ['api','auth:user'],
+    'prefix' => 'order'
+], function () {
+    Route::post('/', [OrderController::class, 'store']);
+    Route::get('/{id}', [OrderController::class, 'show']);
+});

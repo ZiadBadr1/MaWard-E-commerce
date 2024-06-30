@@ -88,13 +88,6 @@ class AuthController extends Controller
         return ApiResponse::sendResponse('200','This is user Profile',new UserResource(auth()->guard('user')->user()));
     }
 
-    /**
-     * Get the token array structure.
-     *
-     * @param string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     protected function createNewToken($token)
     {
         return response()->json([
@@ -104,7 +97,6 @@ class AuthController extends Controller
             'user' => new UserResource(auth()->guard('user')->user())
         ]);
     }
-
     public function updateProfile(UpdateProfileRequest $request)
     {
         $attributes = $request->validated();

@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Api\CartItem;
 
 use App\Helper\ApiResponse;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCartItemRequest;
+use App\Http\Requests\Api\Cart\StoreCartItemRequest;
 use App\Http\Resources\CartItemResource;
 use App\Service\CartService;
-use Illuminate\Http\Request;
 
 class CartItemController extends Controller
 {

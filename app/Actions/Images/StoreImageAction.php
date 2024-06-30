@@ -6,10 +6,8 @@ use Illuminate\Http\UploadedFile;
 
 class StoreImageAction
 {
-    public function execute(UploadedFile $image, $storingPath)
+    public function execute(UploadedFile $image, $storingPath): bool|string
     {
-        $path = $image->store($storingPath, 'public');
-
-        return $path;
+        return $image->store($storingPath, 'public');
     }
 }
