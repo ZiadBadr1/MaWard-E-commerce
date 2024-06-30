@@ -39,28 +39,50 @@ class ProductController extends Controller
     public function filter(ProductFilterRequest $request)
     {
         $attributes = $request->validated();
-        $sortBy = $attributes['sort_by'] ?? 'name';
-        $order = $attributes['order_by'] ?? 'asc';
-        $color = $attributes['color']?? null;
 
         $productsQuery = Product::with(['category', 'brand', 'occasion', 'images']);
 
-        if (isset($color)) {
-            $productsQuery->where('color', $color);
-        }
+        $this->applyFilters($productsQuery, $attributes);
 
-        switch (isset($sortBy)) {
-            case 'price':
-                $productsQuery->orderBy('price', $order);
-                break;
-            case 'name':
-            default:
-                $productsQuery->orderBy('name',$order);
-                break;
-        }
+        $this->applySorting($productsQuery, $attributes);
 
         $products = $productsQuery->paginate(10);
 
         return ApiResponse::sendResponse(200, 'Filtered Products', new ProductResourceCollection($products));
+    }
+
+    private function applyFilters($query, $attributes)
+    {
+        if (!empty($attributes['color'])) {
+            $query->where('color', $attributes['color']);
+        }
+
+        if (!empty($attributes['category'])) {
+            $query->where('category_id', $attributes['category']);
+        }
+
+        if (!empty($attributes['brand'])) {
+            $query->where('brand_id', $attributes['brand']);
+        }
+
+        if (!empty($attributes['occasion'])) {
+            $query->where('occasion_id', $attributes['occasion']);
+        }
+    }
+
+    private function applySorting($query, $attributes)
+    {
+        $sortBy = $attributes['sort_by'] ?? 'name';
+        $order = $attributes['order_by'] ?? 'asc';
+
+        switch ($sortBy) {
+            case 'price':
+                $query->orderBy('price', $order);
+                break;
+            case 'name':
+            default:
+                $query->orderBy('name', $order);
+                break;
+        }
     }
 }

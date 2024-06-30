@@ -22,9 +22,12 @@ class ProductFilterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'sort_by' => ['in:name,price','nullable'],
-            'order_by' => ['in:asc,desc','nullable'],
-            'color' => ['string','nullable'],
+            'sort_by' => ['sometimes', 'in:name,price'],
+            'order_by' => ['sometimes', 'in:asc,desc'],
+            'color' => ['sometimes', 'string'],
+            'category' => ['sometimes', 'integer', 'exists:categories,id'],
+            'brand' => ['sometimes', 'integer', 'exists:brands,id'],
+            'occasion' => ['sometimes', 'integer', 'exists:occasions,id'],
         ];
     }
 }

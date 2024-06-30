@@ -42,4 +42,14 @@ class Product extends Model
     {
         return $this->belongsToMany(Product::class, 'user_favs', 'product_id', 'user_id');
     }
+
+    public function getNameAttribute($value): string
+    {
+        return ucfirst($value);
+    }
+
+    public function setNameAttribute($value): void
+    {
+        $this->attributes['name'] = strtolower($value);
+    }
 }
