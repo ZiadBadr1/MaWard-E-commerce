@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Brand\BrandController;
 use App\Http\Controllers\Api\Cart\CartController;
 use App\Http\Controllers\Api\CartItem\CartItemController;
 use App\Http\Controllers\Api\Category\CategoryController;
+use App\Http\Controllers\Api\Image\ImageController;
 use App\Http\Controllers\Api\Occasion\OccasionController;
 use App\Http\Controllers\Api\Order\OrderController;
 use App\Http\Controllers\Api\Product\FavoriteProductController;
@@ -115,10 +116,16 @@ Route::group([
 });
 
 Route::group([
-    'prefix' => ''
+    'prefix' => "checkout"
 ], function () {
     Route::get('/success', [OrderController::class, 'success'])->name('payment.success');
     Route::get('/cancel', [OrderController::class, 'cancel'])->name('payment.cancel');
 });
 
 
+Route::group([
+    'middleware' => ['api','auth:user'],
+    'prefix' => 'image'
+], function () {
+    Route::post('/send', [ImageController::class, 'store']);
+});
