@@ -24,7 +24,7 @@ class CartItemController extends Controller
 
         try {
             $cartItem = $this->cartService->addItemToCart($user, $data['product_id'], $data['quantity'] ?? 1);
-            $cartItem->load('product');
+            $cartItem->load(['product','product.images']);
 
             return ApiResponse::sendResponse(200, 'Product added successfully to your cart', new CartItemResource($cartItem));
         } catch (\Exception $e) {
@@ -41,7 +41,7 @@ class CartItemController extends Controller
                 return ApiResponse::sendResponse(404, 'Product not found', []);
             }
 
-            $cartItem->load('product');
+            $cartItem->load(['product','product.images']);
             return ApiResponse::sendResponse(200, 'Product incremented successfully', new CartItemResource($cartItem));
         } catch (\Exception $e) {
             return ApiResponse::sendResponse(500, 'Error incrementing product quantity', []);
@@ -57,7 +57,7 @@ class CartItemController extends Controller
                 return ApiResponse::sendResponse(404, 'Product not found or already deleted', []);
             }
 
-            $cartItem->load('product');
+            $cartItem->load(['product','product.images']);
             return ApiResponse::sendResponse(200, 'Product decremented successfully', new CartItemResource($cartItem));
         } catch (\Exception $e) {
             return ApiResponse::sendResponse(500, 'Error decrementing product quantity', []);
