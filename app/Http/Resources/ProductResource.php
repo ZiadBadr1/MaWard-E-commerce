@@ -29,8 +29,25 @@ class ProductResource extends JsonResource
             'brand' => new BrandResource($this->whenLoaded('brand')),
             'occasion' => new OccasionResource($this->whenLoaded('occasion')),
             'images' => ProductImageResource::collection($this->whenLoaded('images')),
+            'is_favorite' => $this->isFavorite(),
             'updated_at' => $this->updated_at->toDateTimeString(),
             'created_at' => $this->created_at->toDateTimeString()
     ];
+    }
+
+    /**
+     * Check if the product is a favorite for the current user.
+     *
+     * @return bool
+     */
+    private function isFavorite(): bool
+    {
+        $user = auth()->guard('user')->user();
+
+        if (!$user) {
+            return false;
+        }
+
+        return $user->favoriteProducts()->where('product_id', $this->id)->exists();
     }
 }

@@ -79,7 +79,7 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'products'
 ], function () {
-    Route::get('/', [ProductController::class, 'index']);
+    Route::get('/', [ProductController::class, 'index'])->middleware('auth:user');
     Route::get('/{id}', [ProductController::class, 'show'])->where('id', '[0-9]+');;
     Route::get('/search/{query}', [ProductController::class, 'search']);
     Route::get('/filter/', [ProductController::class, 'filter']);
