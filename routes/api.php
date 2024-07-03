@@ -111,6 +111,7 @@ Route::group([
     'middleware' => ['api','auth:user'],
     'prefix' => 'order'
 ], function () {
+    Route::get('/all', [OrderController::class, 'index']);
     Route::post('/', [OrderController::class, 'store']);
     Route::get('/{id}', [OrderController::class, 'show']);
 });

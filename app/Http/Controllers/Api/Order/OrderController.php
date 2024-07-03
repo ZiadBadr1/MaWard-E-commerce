@@ -9,14 +9,24 @@ use App\Http\Resources\OrderResource;
 use App\Service\OrderService;
 use App\Service\StripeServices;
 use Illuminate\Http\Request;
+use Spatie\FlareClient\Api;
 
 class OrderController extends Controller
 {
 
     public function __construct(protected OrderService $orderService ,protected StripeServices $stripeServices)
-    {
-    }
+    {}
 
+    public function index()
+    {
+        $user = auth()->guard('user')->user();
+        $orders = $this->orderService->getOrders($user);
+
+        if ($orders) {
+            return ApiResponse::sendResponse(200,'This is Your orders',$orders);
+        }
+        return ApiResponse::sendResponse(200,"you don't have any orders",$orders);
+    }
     public function store(CreateOrderRequest $request)
     {
         $payment_method = $request->validated(['payment_method']);

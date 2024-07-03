@@ -9,6 +9,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Actions\Images\StoreImageAction;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -26,6 +27,10 @@ class  OrderService
         $this->storeImageAction = $storeImageAction;
     }
 
+    public function getOrders(User $user)
+    {
+        return Order::where('user_id',$user->id)->get();
+    }
     public function createOrder($data)
     {
         $cart = Cart::where('user_id', auth()->guard('user')->id())->with('cartItems')->firstOrFail();
