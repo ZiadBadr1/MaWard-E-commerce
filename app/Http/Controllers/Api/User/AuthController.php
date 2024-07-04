@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\User;
 
+use App\Actions\Images\StoreImageAction;
 use App\Helper\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\LoginRequest;
@@ -102,6 +103,9 @@ class AuthController extends Controller
         $attributes = $request->validated();
 
         $user = auth()->guard('user')->user();
+        if(isset($attributes['avatar'])) {
+            $attributes['avatar'] = (new StoreImageAction())->execute($attributes['avatar'], 'user/profile');
+        }
 
         if(isset($attributes['password']))
         {

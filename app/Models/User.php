@@ -81,4 +81,9 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(Cart::class);
     }
 
+    public function avatar():string
+    {
+        return  $this->avatar ? asset('storage/'.$this->avatar) : asset('assets/dashboard/images/avatars/uifaces1.jpg');
+    }
+
 }

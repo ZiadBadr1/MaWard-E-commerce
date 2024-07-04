@@ -24,7 +24,7 @@ class FavoriteProductController extends Controller
     {
         $user = Auth::guard('user')->user();
 
-        $product->load('images');
+        $product->load(['images','category', 'brand', 'occasion']);
         if ($user->favoriteProducts()->where('product_id', $product->id)->exists()) {
             $user->favoriteProducts()->detach($product);
             return ApiResponse::sendResponse(200,'Product removed from favorites',new ProductResource($product));
