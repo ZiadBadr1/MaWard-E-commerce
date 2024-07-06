@@ -1,240 +1,242 @@
 @extends('admin.layouts.master')
-@section('active-dashboard','has-active')
 
 @section('content')
     <main class="app-main">
-        <!-- .wrapper -->
         <div class="wrapper">
-            <!-- .page -->
             <div class="page">
-                <!-- .page-inner -->
                 <div class="page-inner">
-                    <!-- .page-title-bar -->
                     <header class="page-title-bar">
-                        <div class="d-flex flex-column flex-md-row">
-                            <p class="lead">
-                                <span class="font-weight-bold">Supper Admin.</span> <span class="d-block text-muted">Here’s what’s happening with your business today.</span>
-                            </p>
-                            <div class="ml-auto">
-                                <!-- .dropdown -->
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false"><span>This Week</span> <i
-                                                class="fa fa-fw fa-caret-down"></i></button> <!-- .dropdown-menu -->
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-md stop-propagation">
-                                        <div class="dropdown-arrow"></div><!-- .custom-control -->
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="dpToday"
-                                                   name="dpFilter" data-start="2019/03/27" data-end="2019/03/27"> <label
-                                                    class="custom-control-label d-flex justify-content-between"
-                                                    for="dpToday"><span>Today</span> <span
-                                                        class="text-muted">Mar 27</span></label>
-                                        </div><!-- /.custom-control -->
-                                        <!-- .custom-control -->
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="dpYesterday"
-                                                   name="dpFilter" data-start="2019/03/26" data-end="2019/03/26"> <label
-                                                    class="custom-control-label d-flex justify-content-between"
-                                                    for="dpYesterday"><span>Yesterday</span> <span
-                                                        class="text-muted">Mar 26</span></label>
-                                        </div><!-- /.custom-control -->
-                                        <!-- .custom-control -->
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="dpWeek" name="dpFilter"
-                                                   data-start="2019/03/21" data-end="2019/03/27" checked> <label
-                                                    class="custom-control-label d-flex justify-content-between"
-                                                    for="dpWeek"><span>This Week</span> <span
-                                                        class="text-muted">Mar 21-27</span></label>
-                                        </div><!-- /.custom-control -->
-                                        <!-- .custom-control -->
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="dpMonth"
-                                                   name="dpFilter" data-start="2019/03/01" data-end="2019/03/27"> <label
-                                                    class="custom-control-label d-flex justify-content-between"
-                                                    for="dpMonth"><span>This Month</span> <span
-                                                        class="text-muted">Mar 1-31</span></label>
-                                        </div><!-- /.custom-control -->
-                                        <!-- .custom-control -->
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="dpYear" name="dpFilter"
-                                                   data-start="2019/01/01" data-end="2019/12/31"> <label
-                                                    class="custom-control-label d-flex justify-content-between"
-                                                    for="dpYear"><span>This Year</span> <span
-                                                        class="text-muted">2019</span></label>
-                                        </div><!-- /.custom-control -->
-                                        <!-- .custom-control -->
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="dpCustom"
-                                                   name="dpFilter" data-start="2019/03/27" data-end="2019/03/27"> <label
-                                                    class="custom-control-label" for="dpCustom">Custom</label>
-                                            <div class="custom-control-hint my-1">
-                                                <!-- datepicker:range -->
-                                                <input type="text" class="form-control" id="dpCustomInput"
-                                                       data-toggle="flatpickr" data-mode="range"
-                                                       data-disable-mobile="true" data-date-format="Y-m-d">
-                                                <!-- /datepicker:range -->
-                                            </div>
-                                        </div><!-- /.custom-control -->
-                                    </div><!-- /.dropdown-menu -->
-                                </div><!-- /.dropdown -->
+                        <h1 class="page-title">Dashboard</h1>
+                    </header>
+                    <div class="page-section">
+                        <div class="row">
+                            <!-- Total Orders -->
+                            <div class="col-md-3">
+                                <a href="{{ route('admin.order.index') }}" class="card card-body bg-primary text-white mb-4 text-decoration-none">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="card-title">Total Orders</h6>
+                                            <div class="display-4">{{ $totalOrders }}</div>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-shopping-cart fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Total Users -->
+                            <div class="col-md-3">
+                                <a href="{{ route('admin.clients.index') }}" class="card card-body bg-secondary text-white mb-4 text-decoration-none">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="card-title">Total Users</h6>
+                                            <div class="display-4">{{ $totalUsers }}</div>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-users fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Total Products -->
+                            <div class="col-md-3">
+                                <a href="{{ route('admin.product.index') }}" class="card card-body bg-success text-white mb-4 text-decoration-none">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="card-title">Total Products</h6>
+                                            <div class="display-4">{{ $totalProducts }}</div>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-boxes fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Net Profit -->
+                            <div class="col-md-3">
+                                <div class="card card-body bg-info text-white mb-4">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="card-title">Net Profit</h6>
+                                            <div class="display-4">${{ number_format($netProfit, 2) }}</div>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-dollar-sign fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </header><!-- /.page-title-bar -->
-                    <!-- .page-section -->
-                    <div class="page-section">
-                        <!-- .section-block -->
-                        <div class="section-block">
-                            <!-- metric row -->
-                            <div class="metric-row">
-                                <div class="col-lg-9">
-                                    <div class="metric-row metric-flush">
-                                        <!-- metric column -->
-                                        <div class="col">
-                                            <!-- .metric -->
-                                            <a href="user-teams.html" class="metric metric-bordered align-items-center">
-                                                <h2 class="metric-label"> Total Blogs </h2>
-                                                <p class="metric-value h3">
-                                                    <sub><i class="oi oi-people"></i></sub> <span class="value">8</span>
-                                                </p>
-                                            </a> <!-- /.metric -->
-                                        </div><!-- /metric column -->
-                                        <!-- metric column -->
-                                        <div class="col">
-                                            <!-- .metric -->
-                                            <a href="user-projects.html"
-                                               class="metric metric-bordered align-items-center">
-                                                <h2 class="metric-label"> Total Tickets </h2>
-                                                <p class="metric-value h3">
-                                                    <sub><i class="oi oi-fork"></i></sub> <span class="value">12</span>
-                                                </p>
-                                            </a> <!-- /.metric -->
-                                        </div><!-- /metric column -->
-                                        <!-- metric column -->
-                                        <div class="col">
-                                            <!-- .metric -->
-                                            <a href="user-tasks.html" class="metric metric-bordered align-items-center">
-                                                <h2 class="metric-label"> Total Clients </h2>
-                                                <p class="metric-value h3">
-                                                    <sub><i class="fa fa-tasks"></i></sub> <span class="value">64</span>
-                                                </p>
-                                            </a> <!-- /.metric -->
-                                        </div><!-- /metric column -->
+                        <div class="row">
+                            <!-- Pending Orders -->
+                            <div class="col-md-3">
+                                <a href="{{ route('admin.order.index', ['status' => 'pending']) }}" class="card card-body bg-warning text-white mb-4 text-decoration-none">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="card-title">Pending Orders</h6>
+                                            <div class="display-4">{{ $pendingOrders }}</div>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-clock fa-2x"></i>
+                                        </div>
                                     </div>
-                                </div><!-- metric column -->
-                            </div><!-- /metric row -->
-                        </div><!-- /.section-block -->
-                        <!-- title -->
-                        <h1 class="page-title"> Invoices </h1>
-                        <!-- .page-section -->
-                        <div class="page-section">
-                            <!-- .card -->
-                            <div class="card card-fluid">
-                                <!-- .card-body -->
-                                <div class="card-body">
-                                    <!-- .table -->
-                                    <table id="dt-responsive" class="table dt-responsive nowrap w-100">
+                                </a>
+                            </div>
+                            <!-- Shipped Orders -->
+                            <div class="col-md-3">
+                                <a href="{{ route('admin.order.index', ['status' => 'shipped']) }}" class="card card-body bg-primary text-white mb-4 text-decoration-none">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="card-title">Shipped Orders</h6>
+                                            <div class="display-4">{{ $shippedOrders }}</div>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-truck fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Delivered Orders -->
+                            <div class="col-md-3">
+                                <a href="{{ route('admin.order.index', ['status' => 'delivered']) }}" class="card card-body bg-success text-white mb-4 text-decoration-none">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="card-title">Delivered Orders</h6>
+                                            <div class="display-4">{{ $deliveredOrders }}</div>
+                                        </div>
+                                        <div>
+                                            <i class="fas fa-check fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Latest Orders -->
+                        <div class="card card-fluid">
+                            <div class="card-header">
+                                <h6 class="card-title">Latest Orders</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
                                         <thead>
                                         <tr>
-                                            <th> Title</th>
-                                            <th> Description</th>
-                                            <th> Image</th>
-                                            <th> Client</th>
-                                            <th> invoice date</th>
+                                            <th>Order ID</th>
+                                            <th>Client Name</th>
+                                            <th>Status</th>
+                                            <th>Total Amount</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
                                         </tr>
                                         </thead>
-                                        <tr>
-                                            <th> Title</th>
-                                            <th> Description</th>
-                                            <th> Image</th>
-                                            <th> Client</th>
-                                            <th> invoice date</th>
-                                        </tr>
-                                        <tr>
-                                            <th> Title</th>
-                                            <th> Description</th>
-                                            <th> Image</th>
-                                            <th> Client</th>
-                                            <th> invoice date</th>
-                                        </tr>
-                                        <tr>
-                                            <th> Title</th>
-                                            <th> Description</th>
-                                            <th> Image</th>
-                                            <th> Client</th>
-                                            <th> invoice date</th>
-                                        </tr>
-                                        <tr>
-                                            <th> Title</th>
-                                            <th> Description</th>
-                                            <th> Image</th>
-                                            <th> Client</th>
-                                            <th> invoice date</th>
-                                        </tr>
-                                        <tr>
-                                            <th> Title</th>
-                                            <th> Description</th>
-                                            <th> Image</th>
-                                            <th> Client</th>
-                                            <th> invoice date</th>
-                                        </tr>
-                                        <tr>
-                                            <th> Title</th>
-                                            <th> Description</th>
-                                            <th> Image</th>
-                                            <th> Client</th>
-                                            <th> invoice date</th>
-                                        </tr>
-                                        <tr>
-                                            <th> Title</th>
-                                            <th> Description</th>
-                                            <th> Image</th>
-                                            <th> Client</th>
-                                            <th> invoice date</th>
-                                        </tr>
-                                    </table><!-- /.table -->
-                                </div><!-- /.card-body -->
-                            </div><!-- /.card -->
-                        </div><!-- /.page-section -->
-                        <div class="col-12 col-lg-6 col-xl-4">
-                            <!-- .card -->
-                            <div class="card card-fluid">
-                                <!-- .card-body -->
-                                <div class="card-body">
-                                    <h3 class="card-title"> Tickets Performance </h3><!-- easy-pie-chart -->
-                                    <div class="text-center pt-3">
-                                        <div class="chart-inline-group" style="height:214px">
-                                            <div class="easypiechart" data-toggle="easypiechart" data-percent="60"
-                                                 data-size="214" data-bar-color="#346CB0" data-track-color="false"
-                                                 data-scale-color="false" data-rotate="225"></div>
-                                            <div class="easypiechart" data-toggle="easypiechart" data-percent="50"
-                                                 data-size="174" data-bar-color="#00A28A" data-track-color="false"
-                                                 data-scale-color="false" data-rotate="225"></div>
-                                            <div class="easypiechart" data-toggle="easypiechart" data-percent="75"
-                                                 data-size="134" data-bar-color="#5F4B8B" data-track-color="false"
-                                                 data-scale-color="false" data-rotate="225"></div>
-                                        </div>
-                                    </div><!-- /easy-pie-chart -->
-                                </div><!-- /.card-body -->
-                                <!-- .card-footer -->
-                                <div class="card-footer">
-                                    <div class="card-footer-item">
-                                        <i class="fa fa-fw fa-circle text-indigo"></i> 100%
-                                        <div class="text-muted small"> Assigned</div>
-                                    </div>
-                                    <div class="card-footer-item">
-                                        <i class="fa fa-fw fa-circle text-purple"></i> 75%
-                                        <div class="text-muted small"> Open Ticket</div>
-                                    </div>
-                                    <div class="card-footer-item">
-                                        <i class="fa fa-fw fa-circle text-teal"></i> 60%
-                                        <div class="text-muted small"> Solved Ticket</div>
-                                    </div>
-                                </div><!-- /.card-footer -->
-                            </div><!-- /.card -->
-                        </div><!-- /grid column -->
+                                        <tbody>
+                                        @foreach($latestOrders as $order)
+                                            <tr>
+                                                <td>{{ $order->id }}</td>
+                                                <td>{{ $order->client->name ?? 'N/A' }}</td>
+                                                <td>{{ ucfirst($order->status) }}</td>
+                                                <td>{{ $order->total_amount }}</td>
+                                                <td>{{ $order->created_at->format('Y-m-d') }}</td>
+                                                <td>
+                                                    <a href="{{ route('admin.order.show', $order) }}" class="btn btn-sm btn-icon btn-secondary">
+                                                        <i class="fas fa-eye"></i> <span class="sr-only">View</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 
-                    </div><!-- /.page-inner -->
-                </div><!-- /.page -->
+
+                        <!-- Charts -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card card-fluid">
+                                    <div class="card-header">
+                                        <h6 class="card-title">Orders by Month</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="ordersChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card card-fluid">
+                                    <div class="card-header">
+                                        <h6 class="card-title">Revenue by Month</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="revenueChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-        </div><!-- /.page-section -->
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ordersCtx = document.getElementById('ordersChart').getContext('2d');
+            var revenueCtx = document.getElementById('revenueChart').getContext('2d');
+
+            var ordersChart = new Chart(ordersCtx, {
+                type: 'bar',
+                data: {
+                    labels: [@foreach(range(1, 12) as $month) "{{ DateTime::createFromFormat('!m', $month)->format('F') }}", @endforeach],
+                    datasets: [{
+                        label: 'Orders',
+                        data: [@foreach(range(1, 12) as $month) {{ $ordersByMonth[$month] ?? 0 }}, @endforeach],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var revenueChart = new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: [@foreach(range(1, 12) as $month) "{{ DateTime::createFromFormat('!m', $month)->format('F') }}", @endforeach],
+                    datasets: [{
+                        label: 'Revenue',
+                        data: [@foreach(range(1, 12) as $month) {{ $revenueByMonth[$month] ?? 0 }}, @endforeach],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+        function downloadPDF() {
+            document.querySelectorAll('.btn-toolbar').forEach(el => el.style.display = 'none');
+            const element = document.querySelector('.page');
+            html2pdf().from(element).save('dashboard.pdf').then(() => {
+                document.querySelectorAll('.btn-toolbar').forEach(el => el.style.display = '');
+            });
+        }
+    </script>
+
 @endsection

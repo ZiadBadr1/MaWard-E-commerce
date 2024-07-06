@@ -1,18 +1,18 @@
 @extends('admin.authentication.component.main')
 
-
 @section('content')
+
 
     @if(Session::has('error'))
         <div class="alert alert-danger">{{ Session::get('error') }}</div>
     @endif
     <form class="auth-form" method="POST" action="{{route('admin.check-login')}}">
         @csrf
-        <!-- .form-group -->
+                <!-- .form-group -->
         <div class="form-group">
             <div class="form-label-group">
                 <input type="email" id="inputUser" name="email" class="form-control" placeholder="Username" autofocus=""
-                       value="{{old('email')}}"> <label for="inputUser">email</label>
+                       value="{{old('email')}}"> <label for="inputUser">Email</label>
             </div>
             @error('email')
             <p class="text-danger">{{ $message }}</p>

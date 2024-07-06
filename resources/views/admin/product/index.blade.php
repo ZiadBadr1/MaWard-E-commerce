@@ -23,7 +23,7 @@
                         </nav><!-- /.breadcrumb -->
                         <!-- floating action -->
                         <a href="{{ route('admin.product.create') }}">
-                            <button type="button" class="btn btn-success btn-floated"><span class="fa fa-plus"></span></button>
+                            <button type="button" class="btn btn-primary btn-floated"><span class="fa fa-plus"></span></button>
                         </a> <!-- /floating action -->
                         <!-- title and toolbar -->
                         <div class="d-md-flex align-items-md-start">
@@ -71,7 +71,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><span class="oi oi-magnifying-glass"></span></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Search record">
+                                            <input type="text" class="form-control table-search" placeholder="Search record">
                                         </div><!-- /.input-group -->
                                     </div><!-- /.input-group -->
                                 </div><!-- /.form-group -->

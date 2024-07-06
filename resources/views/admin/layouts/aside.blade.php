@@ -34,10 +34,16 @@
                         <a href="{{route('admin.dashboard')}}" class="menu-link"><span class="menu-icon fas fa-home"></span> <span
                                 class="menu-text">Dashboard</span></a>
                     </li><!-- /.menu-item -->
-
+                    <li class="menu-item has-child @yield('open-client-management')">
+                        <a href="#" class="menu-link"><span class="menu-icon fas fa-users"></span> <span class="menu-text">Client Management</span> </a> <!-- child menu -->
+                        <ul class="menu">
+                            <li class="menu-item @yield('active-client')">
+                                <a href="{{ route('admin.clients.index') }}" class="menu-link">Client</a>
+                            </li>
+                        </ul>
+                    </li><!-- /.menu-item -->
                     <li class="menu-item has-child @yield('open-slider-management')">
-                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span
-                                class="menu-text">Slider Management</span> </a> <!-- child menu -->
+                        <a href="#" class="menu-link"><span class="menu-icon fas fa-sliders-h"></span> <span class="menu-text">Slider Management</span> </a> <!-- child menu -->
                         <ul class="menu">
                             <li class="menu-item @yield('active-slider')">
                                 <a href="{{route('admin.slider.index')}}" class="menu-link">Slider</a>
@@ -45,9 +51,9 @@
                         </ul>
                     </li><!-- /.menu-item -->
 
+
                     <li class="menu-item has-child @yield('open-category-management')">
-                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span
-                                    class="menu-text">Category Management</span> </a> <!-- child menu -->
+                        <a href="#" class="menu-link"><span class="menu-icon fas fa-tags"></span> <span class="menu-text">Category Management</span> </a> <!-- child menu -->
                         <ul class="menu">
                             <li class="menu-item @yield('active-category')">
                                 <a href="{{route('admin.category.index')}}" class="menu-link">Category</a>
@@ -56,8 +62,7 @@
                     </li>
 
                     <li class="menu-item has-child @yield('open-brand-management')">
-                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span
-                                    class="menu-text">Brand Management</span> </a> <!-- child menu -->
+                        <a href="#" class="menu-link"><span class="menu-icon fas fa-flag"></span> <span class="menu-text">Brand Management</span> </a> <!-- child menu -->
                         <ul class="menu">
                             <li class="menu-item @yield('active-brand')">
                                 <a href="{{route('admin.brand.index')}}" class="menu-link">Brand</a>
@@ -66,24 +71,33 @@
                     </li>
 
                     <li class="menu-item has-child @yield('open-occasion-management')">
-                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span
-                                    class="menu-text">Occasion Management</span> </a> <!-- child menu -->
+                        <a href="#" class="menu-link"><span class="menu-icon fas fa-calendar-alt"></span> <span class="menu-text">Occasion Management</span> </a> <!-- child menu -->
                         <ul class="menu">
                             <li class="menu-item @yield('active-occasion')">
                                 <a href="{{route('admin.occasion.index')}}" class="menu-link">Occasion</a>
                             </li>
                         </ul>
                     </li>
+
                     <li class="menu-item has-child @yield('open-product-management')">
-                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span
-                                    class="menu-text">Product Management</span> </a> <!-- child menu -->
+                        <a href="#" class="menu-link"><span class="menu-icon fas fa-box"></span> <span class="menu-text">Product Management</span> </a> <!-- child menu -->
                         <ul class="menu">
                             <li class="menu-item @yield('active-product')">
                                 <a href="{{route('admin.product.index')}}" class="menu-link">Product</a>
                             </li>
                         </ul>
                     </li>
-{{--                     Support Management --}}
+
+                    <li class="menu-item has-child @yield('open-order-management')">
+                        <a href="#" class="menu-link"><span class="menu-icon fas fa-shopping-cart"></span> <span class="menu-text">Order Management</span> </a> <!-- child menu -->
+                        <ul class="menu">
+                            <li class="menu-item @yield('active-order')">
+                                <a href="{{route('admin.order.index')}}" class="menu-link">Orders</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    {{--                     Support Management --}}
 {{--                    <li class="menu-item has-child @yield('open-support-management')">--}}
 {{--                        <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span--}}
 {{--                                class="menu-text">Support Management</span> </a> <!-- child menu -->--}}

@@ -4,7 +4,9 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Auth\SessionController;
 use App\Http\Controllers\Admin\Brand\BrandController;
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Client\ClientController;
 use App\Http\Controllers\Admin\Occasion\OccasionController;
+use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\Slider\SliderController;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +30,7 @@ Route::get('/', function () {
 Route::group([
     'as' => 'admin.',
     'prefix' => 'admin/',
-    'middleware' => ['guest']
+    'middleware' => ['guest:admin']
 ],function (){
     Route::get('login',[SessionController::class,'login'])->name('login');
     Route::post('login',[SessionController::class,'checkLogin'])->name('check-login');
@@ -84,4 +86,21 @@ Route::group([
 ],function (){
     Route::resource('product',ProductController::class);
     Route::delete('product/images/{image}',[ProductController::class,'deleteImage'])->name('product.images.delete');
+});
+
+
+Route::group([
+    'as' => 'admin.',
+    'prefix' => 'admin/',
+    'middleware' => ['auth:admin']
+],function (){
+    Route::resource('order',OrderController::class);
+});
+
+Route::group([
+    'as' => 'admin.',
+    'prefix' => 'admin/',
+    'middleware' => ['auth:admin']
+],function (){
+    Route::resource('clients',ClientController::class);
 });

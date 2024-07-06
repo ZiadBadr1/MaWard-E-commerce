@@ -43,7 +43,7 @@ class StripeServices
     {
         $order = Order::find($orderId);
         if ($order) {
-            $order->update(['payment_status' => "paid"]);
+            $order->update(['payment_status' => "Payed"]);
             UpdateStockQtyAction::execute($order->id);
             $cart = Cart::where('user_id', $order->user_id)->first();
             $cart?->cartItems()->delete();
