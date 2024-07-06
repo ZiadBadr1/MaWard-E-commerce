@@ -72,15 +72,7 @@
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="number" id="quantity" name="quantity" class="form-control" value="{{ old('quantity', $order->quantity) }}" placeholder="Quantity" disabled>
-                                <label for="quantity">Quantity</label>
-                            </div>
-                            @error('quantity')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
+
                         <div class="form-group">
                             <div class="form-label-group">
                                 <input type="number" id="total_amount" name="total_amount" class="form-control" value="{{ old('total_amount', $order->total_amount) }}" placeholder="Total Amount" disabled>

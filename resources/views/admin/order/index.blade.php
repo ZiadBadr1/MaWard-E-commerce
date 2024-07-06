@@ -186,6 +186,11 @@
                                                             <i class="fas fa-eye"></i> <span class="sr-only">View</span>
                                                         </a>
                                                     </div>
+                                                    <div style="display: inline-block;">
+                                                        <a href="{{ route('admin.order.edit', $order) }}" class="btn btn-sm btn-icon btn-secondary">
+                                                            <i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span>
+                                                        </a>
+                                                    </div>
                                                 </td>
                                             </tr><!-- /tr -->
                                         @endforeach
