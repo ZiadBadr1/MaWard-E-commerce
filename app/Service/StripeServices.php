@@ -9,12 +9,12 @@ use Stripe\StripeClient;
 
 class StripeServices
 {
-    public function pay(Order $order)
-    {
+    private $conversionRate = 0.021;
+
+    public function pay(Order $order){
         $stripe = new StripeClient(config('services.stripe.secret'));
 
-        $totalAmount = $order->total_amount;
-
+        $totalAmount = $order->total_amount * $this->conversionRate;
         if ($totalAmount > 0) {
 
             $session = $stripe->checkout->sessions->create([
@@ -32,10 +32,8 @@ class StripeServices
                 'success_url' => route('payment.success', ['orderId' => $order->id]),
                 'cancel_url' => route('payment.cancel', ['orderId' => $order->id]),
             ]);
-
             return response($session->url);
         }
-
         return false;
     }
 
@@ -49,7 +47,6 @@ class StripeServices
             $cart?->cartItems()->delete();
             return true;
         }
-
         return false;
     }
 }
